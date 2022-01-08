@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+
 function sentenceToLetter(sentence) {
   if (sentence.includes("A")) return "A";
   if (sentence.includes("B")) return "B";
@@ -6,6 +7,7 @@ function sentenceToLetter(sentence) {
   if (sentence.includes("D")) return "D";
   return None;
 }
+//scrape hoc247 based on URL given, return object of problem datas
 async function scrapeHoc247(url) {
   try {
     let options = [];

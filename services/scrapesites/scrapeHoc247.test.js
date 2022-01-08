@@ -1,4 +1,4 @@
-const scrapeHoc247 = require("../scrapeHoc247");
+const scrapeHoc247 = require("./scrapeHoc247");
 
 test("Test scrape results for hoc247.com", () => {
   const testURL =
