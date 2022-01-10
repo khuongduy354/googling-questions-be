@@ -10,11 +10,9 @@ function sentenceToLetter(sentence) {
 //scrape hoc247 based on URL given, return object of problem datas
 async function scrapeHoc247(url) {
   try {
-    let options = [];
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
-    page.setDefaultTimeout(0);
     await page.goto(url);
 
     //click to show result
@@ -25,18 +23,22 @@ async function scrapeHoc247(url) {
     //get all options
     await page.waitForSelector(".dstl > *");
     const ansList = await page.$$(".dstl > *");
+    let options = [];
     for (const ans of ansList) {
       await ans.waitForSelector("span");
       const li = await ans.$$("span");
-
       const option = await li[1].evaluate((el) => el.innerText);
       options.push(option);
     }
 
     // get explain
-    await page.waitForSelector(".loigiai > * ");
+    let explain;
     const questionAnswer = await page.$$(".loigiai > *");
-    const explain = await questionAnswer[0].evaluate((el) => el.innerText);
+    if (questionAnswer.length === 0) {
+      explain = "";
+    } else {
+      explain = await questionAnswer[0].evaluate((el) => el.innerText);
+    }
 
     //get correct answer
     await page.waitForSelector("._traloi strong");

@@ -7,8 +7,8 @@ async function scrapeSite(questionsList) {
     for (const question of questionsList) {
       const scrapeLink = await scrapeableGoogling(question);
       if (!scrapeLink) return;
-      const { options, correct, explain } = await scrapeHoc247(scrapeLink); //TODO: reimplement this to scrape for all support cases
-      solutionsList.push({ options, correct, explain });
+      const solution = await scrapeHoc247(scrapeLink); //TODO: reimplement this to scrape for all support cases
+      solutionsList.push(solution);
     }
     return solutionsList;
   } catch (e) {
@@ -16,7 +16,7 @@ async function scrapeSite(questionsList) {
   }
 }
 const questionList = [
-  // "Cảm ứng ở động vật là",
+  "Cảm ứng ở động vật là",
   "Ở động vật có hệ thần kinh dạng ống, cấu trúc của não bộ gồm các bộ phận là:",
 ];
 

@@ -26,6 +26,7 @@ async function googling(searchContent) {
     const googleURL = "https://www.google.com/search?q=";
     await page.goto(googleURL + searchContent);
 
+    await page.waitForSelector("#search .g");
     const searchResultEls = await page.$$("#search .g");
     for (const searchResultEl of searchResultEls) {
       const linkEl = await searchResultEl.$("a");
@@ -38,8 +39,4 @@ async function googling(searchContent) {
     console.log(e);
   }
 }
-const testSearchContent = "Cảm ứng ở động vật là";
-const resultLink =
-  "https://hoc247.net/cau-hoi-cam-ung-o-dong-vat-la--qid24113.html";
-scrapeableGoogling(testSearchContent).then((data) => console.log(data));
 module.exports = scrapeableGoogling;
