@@ -27,6 +27,7 @@ async function scrapeHoc247(url) {
     for (const ans of ansList) {
       const li = await ans.$$("span");
       const option = await li[1].evaluate((el) => el.innerText);
+      options.push(option);
     }
 
     // get explain and correct answer
@@ -34,9 +35,11 @@ async function scrapeHoc247(url) {
     const explain = await questionAnswer[0].evaluate((el) => el.innerText);
     const _correct = await questionAnswer[1].evaluate((el) => el.innerText);
     const correct = sentenceToLetter(_correct);
+    await browser.close();
     return { correct, options, explain };
   } catch (e) {
     console.log(e);
   }
 }
+
 module.exports = scrapeHoc247;

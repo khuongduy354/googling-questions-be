@@ -4,6 +4,7 @@ convert docx -> string -> string arrays
 
 # TODO
 
+- Plain search on fe (do this first if possible)
 - Test files (googling)
 - Test endpoint
 - Front end
