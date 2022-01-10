@@ -10,7 +10,7 @@ async function scrapeableGoogling(searchContent) {
         return link;
       }
     }
-    return None;
+    return "";
   } catch (e) {
     console.log(e);
   }
