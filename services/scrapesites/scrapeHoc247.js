@@ -14,6 +14,7 @@ async function scrapeHoc247(url) {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
+    page.setDefaultTimeout(0);
     await page.goto(url);
 
     //click to show result
@@ -25,21 +26,28 @@ async function scrapeHoc247(url) {
     await page.waitForSelector(".dstl > *");
     const ansList = await page.$$(".dstl > *");
     for (const ans of ansList) {
+      await ans.waitForSelector("span");
       const li = await ans.$$("span");
+
       const option = await li[1].evaluate((el) => el.innerText);
       options.push(option);
     }
 
-    // get explain and correct answer
+    // get explain
+    await page.waitForSelector(".loigiai > * ");
     const questionAnswer = await page.$$(".loigiai > *");
     const explain = await questionAnswer[0].evaluate((el) => el.innerText);
-    const _correct = await questionAnswer[1].evaluate((el) => el.innerText);
+
+    //get correct answer
+    await page.waitForSelector("._traloi strong");
+    const traloi = await page.$("._traloi strong");
+    const _correct = await traloi.evaluate((el) => el.innerText);
     const correct = sentenceToLetter(_correct);
+
     await browser.close();
     return { correct, options, explain };
   } catch (e) {
     console.log(e);
   }
 }
-
 module.exports = scrapeHoc247;

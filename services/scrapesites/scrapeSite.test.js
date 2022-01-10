@@ -5,5 +5,5 @@ test("Test scrapeSite return solution list", () => {
     "Hệ thần kinh của côn trùng có các loại hạch nào sau đây?",
     "Ở động vật có hệ thần kinh dạng ống, cấu trúc của não bộ gồm các bộ phận là:",
   ];
-  scrapeSite(questionList).then((data) => console.log(data));
+  return scrapeSite(questionList).then((data) => {});
 });

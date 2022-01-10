@@ -6,6 +6,7 @@ async function scrapeSite(questionsList) {
     const solutionsList = [];
     for (const question of questionsList) {
       const scrapeLink = await scrapeableGoogling(question);
+      if (!scrapeLink) return;
       const { options, correct, explain } = await scrapeHoc247(scrapeLink); //TODO: reimplement this to scrape for all support cases
       solutionsList.push({ options, correct, explain });
     }
@@ -15,8 +16,7 @@ async function scrapeSite(questionsList) {
   }
 }
 const questionList = [
-  "Cảm ứng ở động vật là khả năng tiếp nhận kích thích và",
-  "Hệ thần kinh của côn trùng có các loại hạch nào sau đây?",
+  // "Cảm ứng ở động vật là",
   "Ở động vật có hệ thần kinh dạng ống, cấu trúc của não bộ gồm các bộ phận là:",
 ];
 

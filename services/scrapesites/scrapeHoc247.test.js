@@ -21,4 +21,5 @@ test("Test scrape results for hoc247.com", () => {
     expect(options).toEqual(obj1.options);
     expect(explain).toBe(explain);
   });
+  // .catch((e) => console.log(e));
 });
