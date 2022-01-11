@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",
+    "express-fileupload": "^1.2.1",
     "puppeteer": "^13.0.1",
     "textract": "^2.5.0"
   },
