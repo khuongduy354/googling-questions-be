@@ -1,2 +1,3 @@
 const scrapeSite = require("./scrapesites/scrapeSite");
-module.exports = scrapeSite;
+const formatDoc = require("./formatDoc");
+module.exports = { scrapeSite, formatDoc };

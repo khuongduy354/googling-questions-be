@@ -1,6 +1,5 @@
 {
   "name": "googling-questions-be",
-
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "puppeteer": "^13.0.1",
+    "textract": "^2.5.0"
   },
   "devDependencies": {
     "jest": "^27.4.7"
