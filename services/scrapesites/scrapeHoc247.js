@@ -47,7 +47,7 @@ async function scrapeHoc247(url, questionId) {
     const correct = sentenceToLetter(_correct);
 
     await browser.close();
-    return { correct, options, explain };
+    return { questionId, correct, options, explain };
   } catch (e) {
     console.log(e);
   }

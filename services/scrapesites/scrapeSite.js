@@ -4,13 +4,13 @@ const scrapeHoc247 = require("./scrapeHoc247");
 async function scrapeSite(questionsList) {
   try {
     const solutionsList = [];
-    for (const question of questionsList) {
+    for (const [questionId, question] of questionsList.entries()) {
       const scrapeLink = await scrapeableGoogling(question);
       if (scrapeLink) {
-        const solution = await scrapeHoc247(scrapeLink); //TODO: reimplement this to scrape for all support cases
+        const solution = await scrapeHoc247(scrapeLink, questionId); //TODO: reimplement this to scrape for all support cases
         solutionsList.push(solution);
       } else {
-        solutionsList.push("");
+        solutionsList.push({ questionId });
       }
     }
     return solutionsList;
