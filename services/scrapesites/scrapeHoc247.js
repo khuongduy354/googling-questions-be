@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const { appendGoogle } = require("../../helper/appendGoogle");
 function sentenceToLetter(sentence) {
   if (sentence.includes("A")) return "A";
   if (sentence.includes("B")) return "B";
@@ -9,9 +10,9 @@ function sentenceToLetter(sentence) {
 //scrape hoc247 based on URL given, return object of problem datas
 async function scrapeHoc247(url) {
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
-    page.setDefaultNavigationTimeout(10000);
+    page.setDefaultNavigationTimeout(0);
     await page.goto(url);
 
     //click to show result

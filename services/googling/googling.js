@@ -13,7 +13,7 @@ async function scrapeableGoogling(searchContent) {
     }
     return "";
   } catch (e) {
-    return null;
+    console.log(e);
   }
 }
 
@@ -21,7 +21,7 @@ async function scrapeableGoogling(searchContent) {
 async function googling(searchContent) {
   try {
     const linkList = [];
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
     await page.goto(searchContent);
