@@ -7,10 +7,6 @@ function questionSeparator(questionsKeyword, docxStr) {
   return questions;
 }
 
-function appendGoogle(inputStr) {
-  const googleLink = "https://google.com/search?q=";
-  return googleLink + inputStr;
-}
 function formatDoc(buffer, keyword) {
   return new Promise((resolve, reject) =>
     textract.fromBufferWithMime(
@@ -21,9 +17,6 @@ function formatDoc(buffer, keyword) {
           reject(err);
         }
         let searchList = questionSeparator(keyword, text);
-        if (searchList.length !== 0) {
-          searchList = searchList.map((el) => appendGoogle(el));
-        }
         resolve(searchList);
       }
     )

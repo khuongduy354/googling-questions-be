@@ -1,9 +1,10 @@
 const puppeteer = require("puppeteer");
+const { appendGoogle } = require("../../helper/appendGoogle");
 
 //google, return scrapeable links
 async function scrapeableGoogling(searchContent) {
   try {
-    const linkList = await googling(searchContent);
+    const linkList = await googling(appendGoogle(searchContent));
     for (const link of linkList) {
       if (link.includes("https://hoc247.net")) {
         //TODO: make a separate list to manage scrape supported sites

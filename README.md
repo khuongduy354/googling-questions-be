@@ -11,6 +11,7 @@ convert docx -> string -> string arrays
 
 # Bugs
 
+- Nhảy vô hoc247 mà nó ko phải câu đó
 - format only keywords, -> format words + number instead, 'Câu 1' instead of "Câu"
 - No ideas how to input a sample docx for testing formatDoc func
 - No supported for doc (antiword required)

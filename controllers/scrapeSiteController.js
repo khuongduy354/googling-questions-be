@@ -13,7 +13,6 @@ async function scrapeSiteController(req, res) {
     const solutionList = await scrapeSite(questionList).catch((e) => {
       throw new Error(e);
     });
-    console.log(solutionList);
     res.status(200).json({ solutionList: solutionList });
   } catch (e) {
     console.log(e);

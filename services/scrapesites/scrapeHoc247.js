@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-
+const { appendGoogle } = require("../../helper/appendGoogle");
 function sentenceToLetter(sentence) {
   if (sentence.includes("A")) return "A";
   if (sentence.includes("B")) return "B";
@@ -8,9 +8,9 @@ function sentenceToLetter(sentence) {
   return None;
 }
 //scrape hoc247 based on URL given, return object of problem datas
-async function scrapeHoc247(url, questionId) {
+async function scrapeHoc247(url) {
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
     await page.goto(url);
@@ -25,9 +25,10 @@ async function scrapeHoc247(url, questionId) {
     const ansList = await page.$$(".dstl > *");
     let options = [];
     for (const ans of ansList) {
-      await ans.waitForSelector("span");
       const li = await ans.$$("span");
-      const option = await li[1].evaluate((el) => el.innerText);
+      let availableIndex = 1;
+      if (typeof li[availableIndex] === "undefined") availableIndex = 0;
+      const option = await li[availableIndex].evaluate((el) => el.innerText);
       options.push(option);
     }
 
@@ -47,9 +48,11 @@ async function scrapeHoc247(url, questionId) {
     const correct = sentenceToLetter(_correct);
 
     await browser.close();
-    return { questionId, correct, options, explain };
+    return {
+      content: { correct, options, explain },
+    };
   } catch (e) {
-    console.log(e);
+    return null;
   }
 }
 module.exports = scrapeHoc247;
