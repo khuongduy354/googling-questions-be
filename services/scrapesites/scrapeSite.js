@@ -13,6 +13,9 @@ async function scrapeSite(questionsList) {
         solutionsList.push({ questionId });
       }
     }
+    solutionsList = solutionsList.map(
+      (solution, index) => (solution.originalQuestion = questionsList[index])
+    );
     return solutionsList;
   } catch (e) {
     console.log(e);
