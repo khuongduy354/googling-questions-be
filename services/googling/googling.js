@@ -20,11 +20,10 @@ async function scrapeableGoogling(searchContent) {
 async function googling(searchContent) {
   try {
     const linkList = [];
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
-    const googleURL = "https://www.google.com/search?q=";
-    await page.goto(googleURL + searchContent);
+    await page.goto(searchContent);
 
     await page.waitForSelector("#search .g");
     const searchResultEls = await page.$$("#search .g");

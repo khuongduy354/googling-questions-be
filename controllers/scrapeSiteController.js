@@ -1,10 +1,24 @@
-const { scrapeSite } = require("../services/index");
-
+const { scrapeSite } = require("../services");
+const { formatDoc } = require("../services");
 async function scrapeSiteController(req, res) {
-  const { questionList } = res.body;
-  const results = await scrapeSite(questionList);
-  if (!results) res.status(200).json({ scrapeable: false });
-  res.status(200).json({ scrapeable: true, solutionList: results });
+  try {
+    //format file to array of questions
+    const fileBuffer = req.files.file.data;
+    const { keyword } = req.body;
+    const questionList = await formatDoc(fileBuffer, keyword).catch((e) => {
+      throw new Error(e);
+    });
+
+    //get scrape results
+    const solutionList = await scrapeSite(questionList).catch((e) => {
+      throw new Error(e);
+    });
+    console.log(solutionList);
+    res.status(200).json({ solutionList: solutionList });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ errorMessage: "Server error" });
+  }
 }
 
 module.exports = scrapeSiteController;

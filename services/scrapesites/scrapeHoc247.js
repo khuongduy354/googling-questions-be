@@ -8,7 +8,7 @@ function sentenceToLetter(sentence) {
   return None;
 }
 //scrape hoc247 based on URL given, return object of problem datas
-async function scrapeHoc247(url) {
+async function scrapeHoc247(url, questionId) {
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();

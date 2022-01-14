@@ -1,4 +1,4 @@
 const scrapeSite = require("./scrapesites/scrapeSite");
-const questionSeparator = require("./questionSeparator");
+const formatDoc = require("./formatDoc/formatDoc");
 
-module.exports = { scrapeSite, questionSeparator };
+module.exports = { scrapeSite, formatDoc };
