@@ -3,7 +3,7 @@ function questionSeparator(questionsKeyword, docxStr) {
   questionsKeyword = questionsKeyword.toLowerCase().trim();
   docxStr = docxStr.toLowerCase();
   // const pattern = /câu \d/;
-  const pattern = new RegExp(`${questionsKeyword} [1-1000]`);
+  const pattern = new RegExp(`${questionsKeyword} [0-9]{1,3}`);
   const questions = docxStr.split(pattern);
   questions.shift();
   return questions;

@@ -97,9 +97,10 @@ Câu 1:...., Câu 2:..., hay Question 1:...,Question 2:...
 - có dấu cách giữa "Câu" và số
 - từ "Câu" có thể thay tùy ý (**keyword** trong request): "Question", "Sentence",... nhưng khuyến khích dùng từ nào mà không gặp lại trong câu hỏi và đáp án
 
-<br>
+**Lưu ý**
 
-**Lưu ý**: Chỉ nhận file .docx
+- Chỉ nhận file .docx
+- Tính năng Auto Scrape đang thử nghiệm
 
 # Bugs & Issues
 
@@ -111,6 +112,5 @@ Câu 1:...., Câu 2:..., hay Question 1:...,Question 2:...
 # Dự định
 
 - Reimplement scrapeSite for extendable scrape sites
-- Fix regex keywords
 - Redis
 - Deploy

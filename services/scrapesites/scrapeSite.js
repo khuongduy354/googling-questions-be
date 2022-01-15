@@ -6,6 +6,7 @@ async function scrapeSite(questionsList) {
   try {
     let solutionsList = [];
     for (let questionId = 0; questionId < questionsList.length; questionId++) {
+      console.log(questionId);
       const question = questionsList[questionId];
       //get links of supported sites
       const scrapeLink = await scrapeableGoogling(question);
