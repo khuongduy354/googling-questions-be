@@ -1,8 +1,10 @@
 const textract = require("textract");
 function questionSeparator(questionsKeyword, docxStr) {
-  questionsKeyword = questionsKeyword.toLowerCase();
+  questionsKeyword = questionsKeyword.toLowerCase().trim();
   docxStr = docxStr.toLowerCase();
-  const questions = docxStr.split(questionsKeyword);
+  // const pattern = /câu \d/;
+  const pattern = new RegExp(`${questionsKeyword} [1-1000]`);
+  const questions = docxStr.split(pattern);
   questions.shift();
   return questions;
 }
