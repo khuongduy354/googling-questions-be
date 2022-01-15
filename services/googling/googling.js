@@ -13,7 +13,7 @@ async function scrapeableGoogling(searchContent) {
     }
     return "";
   } catch (e) {
-    console.log(e);
+    return null;
   }
 }
 

@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const { appendGoogle } = require("../../helper/appendGoogle");
 function sentenceToLetter(sentence) {
   if (sentence.includes("A")) return "A";
   if (sentence.includes("B")) return "B";
